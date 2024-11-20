@@ -21,7 +21,7 @@ install.packages("dcData")
 ### Diamond Price Analysis
 This section will focus on the visualizations created from the `diamonds` dataset.
 
-A scatterplot is used to visualize the relationship between diamond length `x` and price `price`. Points are colored blue, and titles and axis labels are added.
+A scatterplot is created using `ggplot()` with the `aes()` parameter and `geom_point()` option. A scatterplot is used to visualize the relationship between diamond length `x` and price `price`. Points are colored blue, and titles and axis labels are added using `labs()`.
 ```R
 diamonds %>%
   ggplot(aes(x = x, y = price)) +
@@ -30,7 +30,7 @@ diamonds %>%
        x = "Length (mm)", 
        y = "Price ($USD)")
 ```
-This scatterplot incorporates the color `color` and cut `cut` attributes into the previous scatterplot to show their influence on diamond price `price`. Custom themes, labeling, and size scales are applied.
+This scatterplot incorporates the color `color` and cut `cut` attributes into the previous scatterplot to show their influence on diamond price `price`. Custom themes, labeling, and size scales are applied using `expression(bold())`, `scale_size_manual()`, and `theme_linedraw()`.
 ```R
 diamonds %>%
   ggplot(aes(x = x, y = price, color = color, size = cut)) +
@@ -46,7 +46,7 @@ diamonds %>%
 ### Penguin Analysis
 This section will focus on the visualizations created from the `penguins` dataset.
 
-The `penguins` dataset is used to create side-by-side scatterplots to analyze the relationship between flipper length `flipper_length_mm` and body mass `body_mass_g` grouped by species `species` and sex `sex`.
+The `penguins` dataset is used to create side-by-side scatterplots using `ggplot()` with the `aes()` parameter and `geom_point()` and `facet_wrap()` options. These side-by-side scatterplots are used to analyze the relationship between flipper length `flipper_length_mm` and body mass `body_mass_g` grouped by species `species` and sex `sex`.
 ```R
 penguins %>%
   ggplot(aes(x = flipper_length_mm, y = body_mass_g, color = sex, facet)) +
@@ -60,7 +60,7 @@ penguins %>%
   ) + 
   theme_linedraw()
 ```
-This plot shows the same information as the previous plot, but improves it by filtering out `NA` values and increasing overall readability.
+This plot shows the same information as the previous plot, but improves it by filtering out `NA` values using `filter(!is.na())` and increasing overall readability with `expression(bold())`, `theme_bw()`, and `theme()`.
 ```R
 penguins %>%
   filter(!is.na(sex)) %>%
@@ -85,7 +85,13 @@ penguins %>%
 ### Baby Name Popularity Analysis
 This section will focus on the visualizations created from the `babynames` dataset.
 
-The `babynames` dataset is used to create a line graph visualizing the popularity `count` of the names "Cole", "Luke", and "Matthew" over time. This first plot will show raw data.
+First, the dataset is wrangled using `filter()` to only focus on the male names "Cole", "Luke", and "Matthew".
+```R
+babynames <- babynames %>%
+  filter(name %in% c("Cole", "Luke", "Matthew")) %>%
+  filter(sex == "M")
+```
+The `babynames` dataset is used to create a line graph using `ggplot()` with the `aes()` parameter and `geom_line()` option. This line graph is used to visualize the popularity `count` of the names `name` represented by the color of the line over time `year`. This first plot will show raw data.
 ```R
 babynames %>%
   ggplot(aes(x = year, y = count, color = name, group = name)) +
@@ -95,7 +101,7 @@ babynames %>%
        y = "Number of Male Babies given Name",
        color = "Name")
 ```
-This second plot improves upon the previous plot by limiting the axis values to show only significant time periods and applying some extra formatting options.
+This second plot improves upon the previous plot by limiting the axis values to show only significant time periods with `scale_x_continuous()` with the `limits` and `breaks` parameters. This plot also applyies some extra formatting options using `expression(bold())` and `theme_linedraw()`.
 ```R
 babynames %>%
   ggplot(aes(x = year, y = count, color = name, group = name)) +
