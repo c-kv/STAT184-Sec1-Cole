@@ -1,0 +1,9 @@
+The /data directory is used to contain the datasets necessary for the Activity in the R code.
+
+There are 3 data files in the /data directory:
+
+babynames.csv - A CSV file containing a baby names dataset used for this Activity. Contains data from the US SSA of yearly lists of baby names, sex, and their frequencies.
+
+diamonds.csv - A CSV file containing a diamonds dataset used for this Activity. Contains data about prices, carats, cuts, dimensions, and clarity of almost 54,000 diamonds.
+
+penguins.csv - A CSV file containing a penguins dataset used for this Activity. Contains data about species, island, body measurements, sex, and year for 344 penguins.
