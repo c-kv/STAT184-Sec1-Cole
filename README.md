@@ -164,3 +164,6 @@ This line graph is an improved version of the previous figure by gauging the pop
 ### Reflection
 
 Overall, this activity taught me how to use the `ggplot2` R package to create effective data visualizations. Also, this activity has taught me how to improve on previous data visualizations to either enhance the content being presented or enhance aesthetics.
+
+## Contact
+Please send any questions, comments, or inquiries to cjk6379@psu.edu.
